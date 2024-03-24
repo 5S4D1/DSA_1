@@ -18,21 +18,17 @@ int main()
     // sorting
     for (int i = 1; i < len; i++)
     {
-        //min_index = i;
+        // min_index = i;
         for (int j = i + 1; j < len; j++)
         {
             if (a[min_index] > a[j])
             {
-                //min_index = j;
+                // min_index = j;
                 int temp = a[i];
-            a[i] = a[min_index];
-            a[min_index] = temp;
+                a[i] = a[min_index];
+                a[min_index] = temp;
             }
         }
-        // if (min_index != i)
-        // {
-            
-        // }
     }
 
     // print final array
