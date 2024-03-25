@@ -123,7 +123,7 @@ int main()
     printArray(array, size);
 
     mergeSort(array, 0, size - 1, 'd');
-    printf("\nAscending Order Sorted array is: ");
+    printf("\nDescending Order Sorted array is: ");
     printArray(array, size);
 
     return 0;
