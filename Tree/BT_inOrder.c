@@ -1,3 +1,13 @@
+/*
+    Tree like this:
+                 1
+               /  \
+             2     3
+            / \   / \
+           4  5  6   7
+
+*/
+
 #include<stdio.h>
 #include<stdlib.h>
 struct node{

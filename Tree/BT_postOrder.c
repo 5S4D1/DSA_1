@@ -8,34 +8,34 @@
 
 */
 
-#include <stdio.h>
-#include <stdlib.h>
 
+#include<stdio.h>
+#include<stdlib.h>
 struct node
 {
     int data;
-    struct node *left;
-    struct node *right;
+    struct node *left, *right;
 };
 
 struct node *create_node(int x)
 {
-    struct node *temp = (struct node *)malloc(sizeof(struct node));
-    temp->data = x;
-    temp->left = NULL;
-    temp->right = NULL;
+    struct node *n = malloc(sizeof(struct node));
+    
+    n->data = x;
+    n->left = NULL;
+    n->right = NULL;
 
-    return temp;
+    return n;
 }
 
-void preOrderTraversal(struct node *root)
+void postOrderTraversal(struct node *root)
 {
-    if (root == NULL)
-        return;
+    if(root == NULL)
+    return ;
 
-    printf("%d ", root->data);
-    preOrderTraversal(root->left);
-    preOrderTraversal(root->right);
+    postOrderTraversal(root->left);
+    postOrderTraversal(root->right);
+    printf("%d ",root->data);
 }
 
 int main()
@@ -54,7 +54,7 @@ int main()
     struct node *t6 = create_node(7);
     t2->right = t6;
 
-    preOrderTraversal(root);
+    postOrderTraversal(root);
 
     free(root);
     free(t1);
@@ -65,4 +65,5 @@ int main()
     free(t6);
 
     return 0;
+    
 }
