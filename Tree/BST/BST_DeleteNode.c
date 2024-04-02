@@ -1,5 +1,10 @@
 /*
     Succeccer is a minimum value of right subtree.
+
+    How it works:
+    Case 1. If the node is a leaf node, remove it by removing the link to it.
+    Case 2. If the node only has one child node, connect the parent node of the node you want to remove to that child node.
+    Case 3. If the node has both right and left child nodes: Find the node's in-order successor, change values with that node, then delete it.
 */
 
 #include <stdio.h>
@@ -48,81 +53,48 @@ Node *InsertNode(Node *root, int value)
     return root;
 }
 
+Node *Minimum(Node *root)
+{
+    Node *current = root;
+    while (current && current->left != NULL)
+        current = current->left;
+
+    return current;
+}
+
 Node *Delete(Node *root, int value)
 {
-    Node *temp = malloc(sizeof(Node));
-    temp = root;
 
-    if (root->data == value)
-    {
-        if (root->left == NULL)
-        {
-            printf("Delete Succesful!\n");
-            return root->right;
-        }
-        else if (root->right == NULL)
-        {
-            printf("Delete Succesful!\n");
-            return root->left;
-        }
-    }
-
-    while (temp != NULL)
-    {
-        if (temp->data == value)
-        {
-            // find the succeccer
-            if (temp->left == NULL)
-            {
-                printf("Delete Succesful!!\n");
-                return temp->right;
-            }
-            else if (temp->right == NULL)
-            {
-                printf("Delete Succesful!!\n");
-                return temp->left;
-            }
-        }
-        else if (temp->data < value)
-        {
-            temp = temp->right;
-        }
-        else
-        {
-            temp = temp->left;
-        }
-    }
-
-    return root;
-}
-
-
-Node *Minimum(Node *root, int key)
-{
     if (root == NULL)
-        return root;
-    Minimum(root->left, key);
-    printf("\nSucceccer of %d is: %d\n",key, root->data);
+    {
+        printf("\nBinary Tree is Empty!\n");
+        return NULL;
+    }
+
+    if (value < root->data)
+        root->left = Delete(root->left, value);
+
+    else if (value > root->data)
+        root->right = Delete(root->right, value);
+
+    /* 2. If the node to be deleted is a leaf node */
+    else if (root->left == NULL && root->right == NULL)
+    {
+        free(root);
+        return NULL;
+    }
+
+    /* 3. If node to be deleted has two children:
+         a) Get the inorder successor (next_node)  of the node to be deleted
+         b) Copy the content of next_node to the node to be deleted
+         c) Delete the copy of next_node as we don't need it anymore
+    */
+    Node *minValueNode = Minimum(root->right);
+    root->data = minValueNode->data;
+    root->right = Delete(root->right, minValueNode->data);
+
     return root;
 }
-
-void Succeccer(Node *root, int key)
-{
-    if(root->data == key)
-    {
-        Node *temp = Minimum(root->right, key);
-        temp = temp->left;
-        printf("\n%d<--- ",temp->data);
-        return;
-    }
-    else if(root->data > key)
-        Succeccer(root->left, key);
-    else
-        Succeccer(root->right, key);
-
-}
-
-
 
 int main()
 {
@@ -138,7 +110,9 @@ int main()
     InsertNode(root, 46);
 
     inOrderPrint(root);
-    Succeccer(root,35);
+    printf("\n");
+    root = Delete(root, 30);
+    inOrderPrint(root);
 
     return 0;
 }
