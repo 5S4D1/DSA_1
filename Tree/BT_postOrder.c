@@ -1,16 +1,16 @@
 /*
     Tree like this:
-                 1
-               /  \
+                1
+               / \
+              /   \
              2     3
             / \   / \
-           4  5  6   7
+           4   5 6   7
 
 */
 
-
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 struct node
 {
     int data;
@@ -20,7 +20,7 @@ struct node
 struct node *create_node(int x)
 {
     struct node *n = malloc(sizeof(struct node));
-    
+
     n->data = x;
     n->left = NULL;
     n->right = NULL;
@@ -30,12 +30,12 @@ struct node *create_node(int x)
 
 void postOrderTraversal(struct node *root)
 {
-    if(root == NULL)
-    return ;
+    if (root == NULL)
+        return;
 
     postOrderTraversal(root->left);
     postOrderTraversal(root->right);
-    printf("%d ",root->data);
+    printf("%d ", root->data);
 }
 
 int main()
@@ -65,5 +65,4 @@ int main()
     free(t6);
 
     return 0;
-    
 }

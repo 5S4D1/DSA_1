@@ -1,16 +1,20 @@
 /*
     Tree like this:
-                 1
-               /  \
+                1
+               / \
+              /   \
              2     3
             / \   / \
-           4  5  6   7
+           4   5 6   7
 
+    if print a binary tree inorderly, it means output is soted by ascending order.
 */
 
-#include<stdio.h>
-#include<stdlib.h>
-struct node{
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node
+{
     int data;
     struct node *left;
     struct node *right;
@@ -28,11 +32,11 @@ struct node *create_node(int x)
 
 void inOrderTraversal(struct node *root)
 {
-    if(root == NULL)
-    return;
+    if (root == NULL)
+        return;
 
     inOrderTraversal(root->left);
-    printf("%d ",root->data);
+    printf("%d ", root->data);
     inOrderTraversal(root->right);
 }
 
@@ -44,13 +48,13 @@ int main()
     root->left = t1;
     struct node *t2 = create_node(3);
     root->right = t2;
-    struct node *t3  = create_node(4);
+    struct node *t3 = create_node(4);
     t1->left = t3;
     struct node *t4 = create_node(5);
     t1->right = t4;
-    struct node  *t5 = create_node(6);
+    struct node *t5 = create_node(6);
     t2->left = t5;
-    struct node *t6  = create_node(7);
+    struct node *t6 = create_node(7);
     t2->right = t6;
 
     inOrderTraversal(root);
