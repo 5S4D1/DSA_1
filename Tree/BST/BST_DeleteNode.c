@@ -64,7 +64,6 @@ Node *Minimum(Node *root)
 
 Node *Delete(Node *root, int value)
 {
-
     if (root == NULL)
     {
         printf("\nBinary Tree is Empty!\n");
@@ -77,22 +76,29 @@ Node *Delete(Node *root, int value)
     else if (value > root->data)
         root->right = Delete(root->right, value);
 
-    /* 2. If the node to be deleted is a leaf node */
-    else if (root->left == NULL && root->right == NULL)
+    // Node with only one child or no child
+    else
     {
-        free(root);
-        return NULL;
+        if (root->left == NULL)
+        {
+            Node *temp = root->right;
+            free(root);
+            return temp;
+        }
+        else if (root->right == NULL)
+        {
+            Node *temp = root->left;
+            free(root);
+            return temp;
+        }
+
+        // Node with two children: Get the minimum value from the right subtree
+        Node *minValueNode = Minimum(root->right);
+        // Copy the inorder successor's content to this node
+        root->data = minValueNode->data;
+        // Delete the inorder successor
+        root->right = Delete(root->right, minValueNode->data);
     }
-
-    /* 3. If node to be deleted has two children:
-         a) Get the inorder successor (next_node)  of the node to be deleted
-         b) Copy the content of next_node to the node to be deleted
-         c) Delete the copy of next_node as we don't need it anymore
-    */
-    Node *minValueNode = Minimum(root->right);
-    root->data = minValueNode->data;
-    root->right = Delete(root->right, minValueNode->data);
-
     return root;
 }
 
