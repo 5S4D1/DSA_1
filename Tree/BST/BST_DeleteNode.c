@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/* if use "typedef" on structure then only use a object like "Node". */
 typedef struct BST_DeleteNode
 {
     int data;
@@ -99,6 +100,7 @@ Node *Delete(Node *root, int value)
         // Delete the inorder successor
         root->right = Delete(root->right, minValueNode->data);
     }
+
     return root;
 }
 
@@ -115,9 +117,11 @@ int main()
     InsertNode(root, 43);
     InsertNode(root, 46);
 
+    printf("In-Order Traversal of the constructed tree is :\n");
     inOrderPrint(root);
     printf("\n");
     root = Delete(root, 30);
+    printf("After Deletion :\n");
     inOrderPrint(root);
 
     return 0;
