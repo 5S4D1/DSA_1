@@ -30,7 +30,7 @@ int main()
     int size = sizeof(nums) / sizeof(nums[0]);
 
     int smallestMissing = findSmallestMissing(nums, size);
-    printf("The smallest missing element is %d\n", smallestMissing);
+    printf("The smallest missing element is : %d\n", smallestMissing);
 
     return 0;
 }
