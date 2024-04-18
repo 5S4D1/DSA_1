@@ -32,7 +32,6 @@ node *insert(node *root, int key)
         else
             root->right = insert(root->right, key);
     }
-
     return root;
 }
 
@@ -49,7 +48,11 @@ void inorderPrint(node *root)
 int main()
 {
     node *root = NULL;
-    root = insert(root, 10);
+    root = insert(root, 28);
+    insert(root, 20);
+    insert(root, 30);
+    insert(root, 40);
+    insert(root, 50);
 
     return 0;
 }
