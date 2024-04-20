@@ -40,7 +40,7 @@ void inOrderPrint(Node *root)
         return;
 
     inOrderPrint(root->left);
-    printf("%d ", root->data);
+    cout<< root->data<< " ";
     inOrderPrint(root->right);
 }
 
