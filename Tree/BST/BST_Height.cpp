@@ -40,7 +40,7 @@ void inOrderPrint(Node *root)
         return;
 
     inOrderPrint(root->left);
-    cout<< root->data<< " ";
+    cout << root->data << " ";
     inOrderPrint(root->right);
 }
 
@@ -70,7 +70,7 @@ int main()
 
     cout << "In-Order Traversal of the constructed tree is :" << endl;
     inOrderPrint(root);
-    cout << endl;
+    cout << "\n" << endl;
 
     cout << "Height is: " << Height(root);
 
