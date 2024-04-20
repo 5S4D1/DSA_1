@@ -46,17 +46,22 @@ void levelOrder(Node *root)
 {
     if (root == NULL)
         return;
+
     queue<Node *> Q;
     Q.push(root);
+
     // while there is at least one discovered
     while (!Q.empty())
     {
         Node *current = Q.front();
         cout << current->data << " ";
+
         if (current->left != NULL)
             Q.push(current->left);
+            
         if (current->right != NULL)
             Q.push(current->right);
+
         Q.pop(); // remove the element at front
     }
 }
