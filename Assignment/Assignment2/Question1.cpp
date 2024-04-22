@@ -161,11 +161,10 @@ int main()
     cout<<endl;
 
     root = Delete(root,45);
-    cout<<"InOrder Print: ";
+    cout<<"InOrder Print after deletion: ";
     printInOrder(root);
     cout<<endl;
 
-    //int heigh = 
     cout<<"Binary Tree Height is:"<< height(root)<<endl;
 
     return 0;
