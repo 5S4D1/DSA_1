@@ -71,13 +71,12 @@ public:
 class Stack
 {
 private:
-    Queue q2;
+    Queue q2, q1;
 
 public:
     //  Add element x to the top of the stack.
     void push(int x)
     {
-        Queue q1;
         q1.enqueue(x);
         while (!q2.isEmpty())
         {
@@ -105,15 +104,18 @@ int main()
 {
     Queue q;
     Stack s;
-    //q.enqueue(1);
-    //q.enqueue(3);
+    q.enqueue(1);
+    q.enqueue(3);
+    q.dequeue();
+    q.dequeue();
+    cout << q.isEmpty() << endl;
     s.push(4);
-    //q.dequeue();
-    //q.dequeue();
     s.push(2);
     s.push(5);
     s.pop();
-    //q.isEmpty();
     s.pop();
     s.pop();
+    cout << s.isEmpty() << endl;
+
+    return 0;
 }
