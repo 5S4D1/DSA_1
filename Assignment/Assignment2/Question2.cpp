@@ -7,11 +7,11 @@
 */
 #include <bits/stdc++.h>
 using namespace std;
-int maze[5][5] = {0, 1, 1, 0, 2,
-                  0, 1, 1, 0, 1,
-                  0, 1, 1, 0, 1,
-                  0, 1, 0, 0, 0,
-                  0, 0, 0, 0, 1};
+int maze[5][5] = {0, 1, 2, 0, 0,
+                  0, 0, 0, 1, 0,
+                  0, 3, 1, 0, 0,
+                  0, 1, 0, 1, 0,
+                  0, 0, 0, 0, 0};
 
 int visited[5][5] = {0, 0, 0, 0, 0,
                      0, 0, 0, 0, 0,
@@ -35,6 +35,10 @@ void dfs(int row, int col)
 
     // color for visited
     visited[row][col] = 1;
+    if(maze[row][col] == 3)
+    {
+        cout<<"found the Treasure!"<<endl;
+    }
     // → move to right
     if (maze[row][col + 1] != 1 && visited[row][col + 1] == 0)
     {
@@ -78,12 +82,18 @@ void bfs(int row, int col)
 
         cout << row << " , " << col << endl;
 
+        if(maze[row][col] == 3)
+    {
+        cout<<"found the Treasure!"<<endl;
+    }
+
         // color for visited
         visited[row][col] = 1;
 
-        if (maze[row][col] == 2)
+        if (maze[row][col] == 2){
             cout << "We are in the exit!" << endl;
-
+            visited[row][col] = 0;
+        }
         // → move to right
         if (maze[row][col + 1] != 1 && visited[row][col + 1] == 0)
         {
@@ -122,11 +132,11 @@ void bfs(int row, int col)
 int main()
 {
     cout << "DFS" << endl;
-    dfs(3, 0);
+    dfs(0, 0);
     cout << "\n"
          << "=============================" << endl;
     cout << "BFS" << endl;
-    bfs(3, 0);
+    bfs(0, 0);
 
     return 0;
 }
