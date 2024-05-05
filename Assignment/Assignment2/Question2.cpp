@@ -30,9 +30,9 @@ void dfs(int row, int col)
 
     cout << row << " , " << col << endl;
     // exit point finder
-    if (maze[row][col] == 2)
+    if (maze[row][col] == 2){
         cout << "We are in the exit!" << endl;
-
+    }
     // color for visited
     visited[row][col] = 1;
     if(maze[row][col] == 3)
