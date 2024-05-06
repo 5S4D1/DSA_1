@@ -50,7 +50,7 @@ bool isValidExpression(string a)
         else if (a[i] == '+' || a[i] == '-' || a[i] == '*' || a[i] == '/')
         {
             bool hasOperator = true;
-            if(a[i+1] == ')' ||a[i+1] == '}'||a[i+1] == ']')
+            if (a[i + 1] == ')' || a[i + 1] == '}' || a[i + 1] == ']')
             {
                 return false;
             }
