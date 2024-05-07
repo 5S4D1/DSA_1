@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
-// chack Palindrome or not
+
+// check Palindrome or not
 bool isPalindrome(string str)
 {
     queue<char> c;
@@ -13,19 +14,20 @@ bool isPalindrome(string str)
         i++;
     }
     i = str.length() - 1;
-    // Check Palindrome or not.
+    // Compare and Check with the element of queue.
     while (i > j)
     {
         if (c.front() != str[i])
         {
+            // if don't match then return false
             return false;
         }
-        c.pop();
+        c.pop(); // if match then pop
         i--;
     }
     return true;
 }
-// chack Valid Expression
+// check Valid Expression
 bool isValidExpression(string a)
 {
     bool hasDigits = false;
@@ -47,7 +49,7 @@ bool isValidExpression(string a)
             if ((a[i] == ')' && b == '(') || (a[i] == '}' && b == '{' || (a[i] == ']' && b == '[')))
                 s.pop();
             else
-                return false;
+                return false; // If there is no opening parenthesis, it is not a valid expression.
         }
         // Check the Operator
         else if (a[i] == '+' || a[i] == '-' || a[i] == '*' || a[i] == '/')
