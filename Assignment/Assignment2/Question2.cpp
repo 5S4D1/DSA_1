@@ -4,6 +4,10 @@
     - Pathway (0)
     - Collecting the Treasure on the way (3)
     - Ends at  the Exit (2)
+    - DFS
+    - BFS
+    Author: Sheikh Sadi
+    © https://github.com/5S4D1
 */
 #include <bits/stdc++.h>
 using namespace std;
@@ -19,8 +23,8 @@ int visited[5][5] = {0, 0, 0, 0, 0,
                      0, 0, 0, 0, 0,
                      0, 0, 0, 0, 0};
 
-queue<int> r;
-queue<int> c;
+queue<int> r;   // queue for row
+queue<int> c;   // queue for column
 
 void dfs(int row, int col)
 {
@@ -47,7 +51,7 @@ void dfs(int row, int col)
                 }
             }
         }
-        cout << "We are in the exit!" << endl;
+        cout << "We are in the exit!\n" << endl;
     }
 
     // → move to right
@@ -77,7 +81,7 @@ void bfs(int row, int col)
 {
     r.push(row);
     c.push(col);
-    int move_count = 0;
+
     while (!r.empty())
     {
         row = r.front();
@@ -104,51 +108,46 @@ void bfs(int row, int col)
 
         if (maze[row][col] == 2)
         {
-            cout << "We are in the exit!" << endl;
+            cout << " We are in the exit!" << endl;
             visited[row][col] = 0;
-        }
-        // → move to right
-        if (maze[row][col + 1] != 1 && visited[row][col + 1] == 0)
-        {
-            // cout << "right ";
-            r.push(row);
-            c.push(col + 1);
-            move_count++;
-        }
-        // ← move to left
-        if (maze[row][col - 1] != 1 && visited[row][col - 1] == 0)
-        {
-            // cout << "left ";
-            r.push(row);
-            c.push(col - 1);
-            move_count++;
-        }
-        // ↓ move to down
-        if (maze[row + 1][col] != 1 && visited[row + 1][col] == 0)
-        {
-            // cout << "down ";
-            r.push(row + 1);
-            c.push(col);
-            move_count++;
+            break;
         }
         // ↑ move to up
         if (maze[row - 1][col] != 1 && visited[row - 1][col] == 0)
         {
-            // cout << "up ";
             r.push(row - 1);
             c.push(col);
-            move_count++;
+        }
+        // → move to right
+        if (maze[row][col + 1] != 1 && visited[row][col + 1] == 0)
+        {
+            r.push(row);
+            c.push(col + 1);
+        }
+        // ↓ move to down
+        if (maze[row + 1][col] != 1 && visited[row + 1][col] == 0)
+        {
+            r.push(row + 1);
+            c.push(col);
+        }
+        // ← move to left
+        if (maze[row][col - 1] != 1 && visited[row][col - 1] == 0)
+        {
+            r.push(row);
+            c.push(col - 1);
         }
     }
 }
 
 int main()
 {
-    cout << "DFS :" << endl;
-    // dfs(0, 0);
+    cout << "DFS for all passible path :" << endl;
+    dfs(0, 0);
+
     cout<< "\n=============================" << endl;
-    //cout << "BFS :" << endl;
-    //bfs(0, 0);
+
+    cout << "BFS for shortest path :" << endl;
+    bfs(4, 0);
 
     return 0;
 }
