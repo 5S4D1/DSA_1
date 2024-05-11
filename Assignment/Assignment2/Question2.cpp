@@ -23,8 +23,8 @@ int visited[5][5] = {0, 0, 0, 0, 0,
                      0, 0, 0, 0, 0,
                      0, 0, 0, 0, 0};
 
-queue<int> r;   // queue for row
-queue<int> c;   // queue for column
+queue<int> r; // queue for row
+queue<int> c; // queue for column
 
 void dfs(int row, int col)
 {
@@ -51,7 +51,8 @@ void dfs(int row, int col)
                 }
             }
         }
-        cout << "We are in the exit!\n" << endl;
+        cout << "We are in the exit!\n"
+             << endl;
     }
 
     // → move to right
@@ -96,7 +97,7 @@ void bfs(int row, int col)
         if (visited[row][col] == 1)
             continue;
 
-        cout << "("<<row << "," << col <<") ";
+        cout << "(" << row << "," << col << ") ";
 
         if (maze[row][col] == 3)
         {
@@ -144,7 +145,7 @@ int main()
     cout << "DFS for all passible path :" << endl;
     dfs(0, 0);
 
-    cout<< "\n=============================" << endl;
+    cout << "\n=============================" << endl;
 
     cout << "BFS for shortest path :" << endl;
     bfs(4, 0);
