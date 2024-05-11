@@ -1,9 +1,9 @@
 /*
     The Maze of Mysteries - Finding Paths  with Treasures
-    Explore the maze, avoid walls (1)
-    Pathway (0)
-    collecting the Treasure on the way (3)
-    ends at  the Exit (2)
+    - Explore the maze, avoid walls (1)
+    - Pathway (0)
+    - Collecting the Treasure on the way (3)
+    - Ends at  the Exit (2)
 */
 #include <bits/stdc++.h>
 using namespace std;
@@ -28,17 +28,28 @@ void dfs(int row, int col)
     if (row < 0 || row > 4 || col < 0 || col > 4)
         return;
 
-    cout << row << " , " << col << endl;
-    // exit point finder
-    if (maze[row][col] == 2){
-        cout << "We are in the exit!" << endl;
-    }
     // color for visited
     visited[row][col] = 1;
-    if(maze[row][col] == 3)
+
+    // exit point finder
+    if (maze[row][col] == 2)
     {
-        cout<<"found the Treasure!"<<endl;
+
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                if (visited[i][j] == 1)
+                    cout << "(" << i << "," << j << ") ";
+                if (maze[i][j] == 3 && visited[i][j] == 1)
+                {
+                    cout << "found the Treasure! ";
+                }
+            }
+        }
+        cout << "We are in the exit!" << endl;
     }
+
     // → move to right
     if (maze[row][col + 1] != 1 && visited[row][col + 1] == 0)
     {
@@ -76,21 +87,23 @@ void bfs(int row, int col)
         // Check the Boundary of maze
         if (row < 0 || row > 4 || col < 0 || col > 4)
             continue;
+
         // Check if visited
         if (visited[row][col] == 1)
             continue;
 
-        cout << row << " , " << col << endl;
+        cout << "("<<row << "," << col <<") ";
 
-        if(maze[row][col] == 3)
-    {
-        cout<<"found the Treasure!"<<endl;
-    }
+        if (maze[row][col] == 3)
+        {
+            cout << "found the Treasure! ";
+        }
 
         // color for visited
         visited[row][col] = 1;
 
-        if (maze[row][col] == 2){
+        if (maze[row][col] == 2)
+        {
             cout << "We are in the exit!" << endl;
             visited[row][col] = 0;
         }
@@ -131,12 +144,11 @@ void bfs(int row, int col)
 
 int main()
 {
-    cout << "DFS" << endl;
-    dfs(0, 0);
-    cout << "\n"
-         << "=============================" << endl;
-    cout << "BFS" << endl;
-    bfs(0, 0);
+    cout << "DFS :" << endl;
+    // dfs(0, 0);
+    cout<< "\n=============================" << endl;
+    //cout << "BFS :" << endl;
+    //bfs(0, 0);
 
     return 0;
 }
